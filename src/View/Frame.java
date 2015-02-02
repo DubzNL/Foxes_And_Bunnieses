@@ -13,6 +13,7 @@ import Model.Simulator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
+import Model.Sound;
 
 /**
  * A graphical view of the simulation grid.
@@ -51,6 +52,7 @@ public class Frame extends JFrame implements ActionListener
     private HistogramView histogram;
     private JPanel panel;
     private RightMenu rightMenu;
+    private Sound sound;
     /**
      * Create a view of the given width and height.
      * @param height The simulation's height.
@@ -60,7 +62,7 @@ public class Frame extends JFrame implements ActionListener
     {
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
-        rightMenu = new RightMenu();
+        rightMenu = new RightMenu(stats);
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new StepLabelView();
         population = new PopulationView();
@@ -69,7 +71,7 @@ public class Frame extends JFrame implements ActionListener
         histogram = new HistogramView();
         panel = new JPanel();
         setLocation(100, 50);
-        
+        sound = new Sound();
         fieldView = new FieldView(height, width);
 
         Container contents = getContentPane();
@@ -106,6 +108,7 @@ public class Frame extends JFrame implements ActionListener
      */
     public void actionPerformed(ActionEvent event)
     {
+    	sound.playSound();
     	String command = event.getActionCommand();
     	
     	if(command.equals("1 stap"))
