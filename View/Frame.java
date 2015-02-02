@@ -1,7 +1,9 @@
 package View;
 import java.awt.*;
 import java.awt.event.*;
+
 import View.*;
+
 import javax.swing.*;
 
 import Model.Field;
@@ -47,6 +49,8 @@ public class Frame extends JFrame implements ActionListener
     private StepLabelView stepLabel;
     private PopulationView population;
     private HistogramView histogram;
+    private JPanel panel;
+    private RightMenu rightMenu;
     /**
      * Create a view of the given width and height.
      * @param height The simulation's height.
@@ -56,14 +60,14 @@ public class Frame extends JFrame implements ActionListener
     {
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
-
+        rightMenu = new RightMenu();
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new StepLabelView();
         population = new PopulationView();
         menu = new Menu(); 
         theSimulator = simulator;
         histogram = new HistogramView();
-        
+        panel = new JPanel();
         setLocation(100, 50);
         
         fieldView = new FieldView(height, width);
@@ -73,7 +77,8 @@ public class Frame extends JFrame implements ActionListener
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add((population.getPopulation()), BorderLayout.SOUTH);
         contents.add((menu.getMenu()), BorderLayout.WEST);
-        contents.add((histogram.getHistogramView()), BorderLayout.EAST);
+        contents.add((rightMenu.getRightMenu()), BorderLayout.EAST);
+        //contents.add(panel, BorderLayout.EAST);
         Dimension d = new Dimension(150,60);
         ((histogram.getHistogramView())).setPreferredSize(d);
         
