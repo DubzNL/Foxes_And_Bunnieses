@@ -111,10 +111,6 @@ public class Simulator
                 it.remove();
             }
         }
-        if(step % 10 == 0)
-        {
-        	
-        }
                
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);

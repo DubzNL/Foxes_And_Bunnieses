@@ -22,7 +22,7 @@ public class HistogramView extends AbstractView{
 	public HistogramView(){
 		
 		image = new ImageIcon(this.getClass().getResource("/images/fox_icon.jpg")).getImage();
-		histogram = new JLabel(new GridBagLayout());
+		histogram = new JLabel(); //new GridBagLayout()
 		histogram.setIcon(new ImageIcon(image));
 		histogram.setBounds(0,0, 115, 130);
 		

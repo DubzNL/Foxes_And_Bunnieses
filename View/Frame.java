@@ -46,6 +46,7 @@ public class Frame extends JFrame implements ActionListener
     private Simulator theSimulator;
     private StepLabelView stepLabel;
     private PopulationView population;
+    private HistogramView histogram;
     /**
      * Create a view of the given width and height.
      * @param height The simulation's height.
@@ -57,15 +58,11 @@ public class Frame extends JFrame implements ActionListener
         colors = new LinkedHashMap<Class, Color>();
 
         setTitle("Fox and Rabbit Simulation");
-        //stepLabel = new JLabel(STEP_PREFIX, JLabel.CENTER);
         stepLabel = new StepLabelView();
         population = new PopulationView();
-        //population = new JLabel(POPULATION_PREFIX, JLabel.CENTER);
-        //linkerMenu = new JPanel(new GridLayout(2,1));
-        menu = new Menu();
-        
+        menu = new Menu(); 
         theSimulator = simulator;
-        
+        histogram = new HistogramView();
         
         setLocation(100, 50);
         
@@ -76,9 +73,18 @@ public class Frame extends JFrame implements ActionListener
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add((population.getPopulation()), BorderLayout.SOUTH);
         contents.add((menu.getMenu()), BorderLayout.WEST);
+        contents.add((histogram.getHistogramView()), BorderLayout.EAST);
+        Dimension d = new Dimension(150,60);
+        ((histogram.getHistogramView())).setPreferredSize(d);
+        
+        
+        
         addButton();
         pack();
         setVisible(true);
+        
+
+        
     }
     
     

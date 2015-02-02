@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * Hunters kill animals.
  * 
- * @author Eric Gunnink
- * @version 31-1-2015
+ * @author David J. Barnes and Michael Kölling and Poul Henricksen
+ * @version 2011.07.31
  */
 public class Hunter implements Actor
 {
