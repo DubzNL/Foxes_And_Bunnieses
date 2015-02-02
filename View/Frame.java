@@ -60,7 +60,7 @@ public class Frame extends JFrame implements ActionListener
     {
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
-        rightMenu = new RightMenu();
+        rightMenu = new RightMenu(stats);
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new StepLabelView();
         population = new PopulationView();

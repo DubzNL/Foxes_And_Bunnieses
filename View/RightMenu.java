@@ -21,9 +21,10 @@ public class RightMenu extends AbstractView{
 	private JLabel label;
 	private JLabel textLabel;
 	private JPanel textPanel;
+	private FieldStats stats;
 	
-	public RightMenu(){
-	
+	public RightMenu(FieldStats stats){
+		this.stats=stats;
 		textPanel = new JPanel();
 		addTextPanel();
 		textLabel = new JLabel("Meest voorkomende actor:");
@@ -52,7 +53,12 @@ public class RightMenu extends AbstractView{
 	textPanel.add("test", new JButton("Button 1"));
 	JTextField numberField = new JTextField(10);
 	textPanel.add(numberField);
+	textPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	
+	}
 	
+	public void calculateActor(){
+		
+		
 	}
 }
