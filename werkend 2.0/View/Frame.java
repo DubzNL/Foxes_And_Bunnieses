@@ -108,7 +108,7 @@ public class Frame extends JFrame implements ActionListener
      */
     public void actionPerformed(ActionEvent event)
     {
-    	sound.playSound();
+    	
     	String command = event.getActionCommand();
     	
     	if(command.equals("1 stap"))
@@ -119,6 +119,10 @@ public class Frame extends JFrame implements ActionListener
     	if(command.equals("100 stappen"))
     	{
     		theSimulator.simulate(100);
+    	}
+    	else{
+    		sound.playSound();
+    		
     	}
     }
     /**
