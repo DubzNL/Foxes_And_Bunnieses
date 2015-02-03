@@ -15,6 +15,13 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 
+/**
+ * Deze klasse bouwt de menu aan de rechterkant van de 
+ * simulatie paneel.
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public class RightMenu extends AbstractView{
 	private  JPanel panel;
 	private Image image;

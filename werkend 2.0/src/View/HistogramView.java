@@ -14,6 +14,12 @@ import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+/**
+ * Deze klasse voegt de Fox plaatje toe aan de simulatie panel
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public class HistogramView extends AbstractView{
     
     private JLabel histogram;

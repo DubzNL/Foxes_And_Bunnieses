@@ -12,6 +12,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
 
+/**
+ * Deze klasse zien zien hoeveel stappen
+ * (simualitie rondes) er zijn geweest.
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public class StepLabelView extends AbstractView{
 	private final String STEP_PREFIX = "Step: ";
 	private JLabel stepLabel;

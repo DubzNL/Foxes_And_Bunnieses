@@ -12,6 +12,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
 
+/**
+ * Deze klasse is de hoofdklasse van de Views.
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public abstract class AbstractView extends JPanel
 {
 //private Frame frame;

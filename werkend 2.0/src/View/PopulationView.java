@@ -12,6 +12,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
 
+/**
+ * Deze klasse laat de verschillende populaties zien van
+ * van de actors in de simulatie paneel.
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public class PopulationView extends AbstractView{
     private final String POPULATION_PREFIX = "Population: ";
     private JLabel population;

@@ -19,6 +19,14 @@ import Actoren.Hunter;
 import Actoren.Jackelope;
 import Actoren.Rabbit;
 
+/**
+ * Deze JUnit test wordt gebruikt om de testen 
+ * of de vossen op de goede manier voortplanten.
+ * 
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 @RunWith(Parameterized.class)
 public class SimulatorTest {
 	

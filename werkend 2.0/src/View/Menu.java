@@ -12,6 +12,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
 
+/**
+ * Deze bouwt de menu aan de linkerkant van de simluatie paneel
+ * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
+ * @version 2015-03-02
+ */
+
 public class Menu extends AbstractView{
 	
 	private JPanel linkerMenu;
