@@ -12,7 +12,7 @@ public class Sound {
 	}
 	public void playSound() {
 		try {
-			AudioClip ac = Applet.newAudioClip(new URL("http://www.wavsource.com/snds_2015-02-01_1031597268120418/animals/dog_bark_x.wav"));
+			AudioClip ac = Applet.newAudioClip(new URL("http://www.wavsource.com/snds_2015-02-01_1031597268120418/animals/wolf_x.wav"));
 			ac.play();
 		} catch(Exception e) {
 			System.err.println(e);
