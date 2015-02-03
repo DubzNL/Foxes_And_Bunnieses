@@ -40,8 +40,6 @@ public class Rabbit extends Animal
     private boolean isSick;
     // The likelihood a rabbit gets the diseasegen
     private static double DISEASE_PROBABILITY = 0.75;
-    // The amount of steps the rabbit can take before dieing
-    private static int DISEASE_TIME = 5;
     
 
     /**
@@ -182,7 +180,41 @@ public class Rabbit extends Animal
     }
     
     /**
-     * Makes other rabbits sick
+     * Boolean to make a rabbit sick
      */
-   
+    protected void setSick()
+    {
+    	isSick = true;
+    }
+    
+    /**
+     * Get the boolean to check whether a rabbit is vulnerable or not
+     */
+    public boolean getVulnerable()
+    {
+    	return isVulnerable;
+    }
+    
+    /**
+     * A sick rabbit can infect other rabbits. every step, a sick rabbit
+     * can only infect one vulnerable rabbit.
+     */
+    private boolean findHealty()
+    {
+    	Field field = getField();
+    	List<Location> adjacent = field.adjacentLocations(getLocation());
+    	Iterator<Location> it = adjacent.iterator();
+    	while(it.hasNext()) {
+    		Location where = it.next();
+    		Object animal = field.getObjectAt(where);
+    		if(animal instanceof Rabbit) {
+    			Rabbit rabbit = (Rabbit) animal;
+    			if(rabbit.getVulnerable() == true) {
+    				return true;
+    			}
+    		}
+    	}
+    	return false;
+    }
+
 }

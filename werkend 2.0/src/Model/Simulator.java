@@ -115,19 +115,7 @@ public class Simulator
             if(! animal.isActive()) {
                 it.remove();
             }
-        }
-        /**
-          if(step % 10 == 0)
-        {
-        	//if(rand.nextInt(50) + 1 % 2 == 0)
-        	//{
-        		int row = rand.nextInt(DEFAULT_DEPTH) + 1;
-        		Roadkill roadkill = new Roadkill(field);
-        		//Roadkill.kill(row);
-        	//}
-        }
-        */
-               
+        }             
         // Add the newly born foxes and rabbits to the main lists.
         animals.addAll(newAnimals);
 
@@ -164,5 +152,14 @@ public class Simulator
     public static int getDepth()
     {
     	return DEFAULT_DEPTH;
+    }
+    
+    /**
+     * Get the number of the step that you're currently on
+     * @return step the step that you're on right now
+     */
+    public int getStep()
+    {
+    	return step;
     }
 }

@@ -5,9 +5,6 @@ import Model.*;
 
 public class Roadkill implements Actor
 {
-	// checks whether the roadkill is still active
-	private boolean isActive = true;
-	
 	// The roadkill's position in the field
 	private Location location;
 	
@@ -25,6 +22,14 @@ public class Roadkill implements Actor
 	{
 		this.field = field;
 		setLocation(location);
+	}
+	
+	/**
+	 * Boolean to check whether Roadkill is active
+	 */
+	public boolean isActive()
+	{
+		
 	}
 	
 	/**
