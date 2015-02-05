@@ -19,24 +19,27 @@ public class RightMenu extends AbstractView{
 	private JLabel label;
 	private JLabel textLabel;
 	private JPanel textPanel;
-	private FieldStats stats;
 	
-	public RightMenu(FieldStats stats){
-		this.stats=stats;
-		textPanel = new JPanel();
-		addTextPanel();
-		label = new JLabel();
-		//image = new ImageIcon(this.getClass().getResource("src.images/fox_icon.jpg")).getImage();
-		//ImageIcon icon = new ImageIcon(image);
-		//label.setIcon(icon);
+	
+	public RightMenu(){
 		
-		panel = new JPanel(new GridLayout(3,5));
+		textPanel = new JPanel();
+		
+		addTextPanel();
+		textLabel = new JLabel("Meest voorkomende actor:");
+		label = new JLabel();
+		image = new ImageIcon(this.getClass().getResource("/src/images/fox_icon.jpg")).getImage();
+		ImageIcon icon = new ImageIcon(image);
+		label.setIcon(icon);
+		
+		//panel = new JPanel(new GridLayout(3,5));
+		panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(textLabel, BorderLayout.SOUTH);
 		
 		
 		panel.add(label);
 		panel.add(textPanel, BorderLayout.SOUTH);
-		//textPanel.add(textPanel);
 		
 	}
 	
@@ -47,7 +50,9 @@ public class RightMenu extends AbstractView{
 	
 	private void addTextPanel(){
 		
-	textPanel.add("Fox", new JButton("Fox"));
+	textPanel.add("test", new JButton("Button 1"));
+	JTextField numberField = new JTextField(10);
+	textPanel.add(numberField);
 	textPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	
 	}

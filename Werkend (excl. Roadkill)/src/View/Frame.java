@@ -56,7 +56,7 @@ public class Frame extends JFrame
     {
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
-        //rightMenu = new RightMenu(stats);
+        rightMenu = new RightMenu();
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new StepLabelView();
         population = new PopulationView();
@@ -71,7 +71,7 @@ public class Frame extends JFrame
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add((population.getPopulation()), BorderLayout.SOUTH);
         contents.add((menu.getMenu()), BorderLayout.WEST);
-        //contents.add((rightMenu.getRightMenu()), BorderLayout.EAST);
+        contents.add((rightMenu.getRightMenu()), BorderLayout.EAST);
         //contents.add(panel, BorderLayout.EAST);
         Dimension d = new Dimension(150,60);
         
