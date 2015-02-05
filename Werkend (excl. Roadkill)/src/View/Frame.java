@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
  * @author Jelmer Postma & Eric Gunnink & Adrian van Elk
  * @version 2015-01-28
  */
-public class Frame extends JFrame implements ActionListener
+public class Frame extends JFrame
 {
     // Colors used for empty locations.
     private static final Color EMPTY_COLOR = Color.white;
@@ -35,11 +35,7 @@ public class Frame extends JFrame implements ActionListener
     //private JLabel population;
     //private JPanel linkerMenu;
     private FieldView fieldView;
-    public JButton oneStepButton = new JButton("1 stap");
-    public JButton oneHundredStepButton = new JButton("100 stappen");
-    public JButton resetButton = new JButton("Reset");
-    public JButton quitButton = new JButton("Quit");
-
+ 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
@@ -56,7 +52,7 @@ public class Frame extends JFrame implements ActionListener
      * @param height The simulation's height.
      * @param width  The simulation's width.
      */
-    public Frame(int height, int width, Simulator simulator)
+    public Frame(int height, int width, Simulator simulator,Menu menu)
     {
         stats = new FieldStats();
         colors = new LinkedHashMap<Class, Color>();
@@ -64,7 +60,7 @@ public class Frame extends JFrame implements ActionListener
         setTitle("Fox and Rabbit Simulation");
         stepLabel = new StepLabelView();
         population = new PopulationView();
-        menu = new Menu(); 
+        this.menu=menu;
         theSimulator = simulator;
         panel = new JPanel();
         setLocation(100, 50);
@@ -79,56 +75,12 @@ public class Frame extends JFrame implements ActionListener
         //contents.add(panel, BorderLayout.EAST);
         Dimension d = new Dimension(150,60);
         
-        
-        
-        addButton();
         pack();
         setVisible(true);
-        
 
         
     }
     
-    
-    private void addButton()
-    { 
-    	
-    	menu.getMenu().add(oneStepButton, BorderLayout.NORTH);
-    	menu.getMenu().add(oneHundredStepButton, BorderLayout.NORTH);
-    	menu.getMenu().add(resetButton, BorderLayout.SOUTH);
-    	menu.getMenu().add(quitButton, BorderLayout.SOUTH);
-    	
-    	oneStepButton.addActionListener(this);
-    	oneHundredStepButton.addActionListener(this);
-    	quitButton.addActionListener(this);
-    	resetButton.addActionListener(this);
-    }
-    /**
-     *  Methode om een actie uit te voeren wanneer er op een knop wordt geklikt
-     */
-    public void actionPerformed(ActionEvent event)
-    {
-    	
-    	String command = event.getActionCommand();
-    	
-    	if(command.equals("1 stap"))
-    	{
-    		theSimulator.simulateOneStep();
-    		
-    	}
-    	if(command.equals("100 stappen"))
-    	{
-    		theSimulator.simulate(100);
-    	}
-    	if(command.equals("Reset"))
-    	{ 		
-    		theSimulator.reset();
-    	}
-    	if(command.equals("Quit"))
-    	{
-    		theSimulator.quit();
-    	}
-    }
     /**
      * Define a color to be used for a given class of animal.
      * @param animalClass The animal's Class object.

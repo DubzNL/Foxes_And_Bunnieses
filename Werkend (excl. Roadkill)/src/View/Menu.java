@@ -10,14 +10,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
 
-public class Menu extends AbstractView{
+public class Menu extends AbstractView
+{
 	
 	private JPanel linkerMenu;
-	
+	private Simulator theSimulator;
 	
 	public Menu(){
-		linkerMenu = new JPanel(new GridLayout(2,1));
 		
+		
+		linkerMenu = new JPanel();
+		linkerMenu.setLayout(new BoxLayout(linkerMenu, BoxLayout.PAGE_AXIS));
+		
+		//Controller controller = new Controller(linkerMenu,this.theSimulator);
 	}
 	
 	public JPanel getMenu(){
@@ -25,4 +30,5 @@ public class Menu extends AbstractView{
 		return linkerMenu;
 	}
 	
+    
 }

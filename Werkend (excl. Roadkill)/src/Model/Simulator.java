@@ -35,6 +35,7 @@ public class Simulator
     // An object to generate populations of foxes and rabbits.
     private PopulationGenerator populator;
     private Random rand = new Random();
+    private Controller controller;
     
     /**
      * Construct a simulation field with default size.
@@ -42,6 +43,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
+        
     }
     
     /**
@@ -62,7 +64,9 @@ public class Simulator
         field = new Field(depth, width);
         Simulator simulator = this;
         // Create a view of the state of each location in the field.
-        view = new Frame(depth, width, simulator);
+        Menu menu = new Menu();
+        controller = new Controller((menu.getMenu()),simulator);
+        view = new Frame(depth, width, simulator,menu);
         populator = new PopulationGenerator(view);
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
