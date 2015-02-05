@@ -1,6 +1,6 @@
-package Actoren;
+package src.Actoren;
 
-import Model.*;
+import src.Model.*;
 import java.util.List;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,8 +9,8 @@ import java.util.Random;
  * A simple model of a fox.
  * Foxes age, move, eat rabbits, and die.
  * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ * @author Eric Gunnink
+ * @version 3-2-2015
  */
 public class Fox extends Animal
 {
@@ -31,8 +31,6 @@ public class Fox extends Animal
     private static final int GRASS_FOOD_VALUE = 1;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    //the fox's age
-    private int age;
     
     // Individual characteristics (instance fields).
     // The fox's food level, which is increased by eating rabbits or jackelopes
@@ -187,17 +185,4 @@ public class Fox extends Animal
     {
         return new Fox(randomAge, field, location);
     }
-    
-   /**
-    * Getter Age of Fox
-    * @return age
-    */
-    public int getAgeFox() {
-    	return age;
-    }
-    
-    public int getMaxAgeFox() {
-    	return MAX_AGE;
-    }
-        
 }

@@ -1,31 +1,16 @@
-package Model;
-
-//import static org.junit.Assert.*;
+package test.Model;
 
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Random;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import Actoren.Actor;
-import Actoren.Animal;
-import Actoren.Fox;
-import Actoren.Hunter;
-import Actoren.Jackelope;
-import Actoren.Rabbit;
-
-/**
- * Deze JUnit test wordt gebruikt om de testen 
- * of de vossen op de goede manier voortplanten.
- * 
- * @author Adriaan van Elk, Eric Gunnink, Jelmer Postma 
- * @version 2015-03-02
- */
+import src.Actoren.*;
+import src.Model.*;
 
 @RunWith(Parameterized.class)
 public class SimulatorTest {
@@ -45,42 +30,36 @@ public class SimulatorTest {
 		}
 		//set the breeding probibilities
 		@Parameters
-		public static void testProbibilities(double testParameterFox, double testParameterRabbit, double testParameterHunter, double testParameterJackelope) 
+		public void testProbibilities(double testParameterFox, double testParameterRabbit, double testParameterHunter, double testParameterJackelope) 
 		{
-		testParameterFox 			= 0.02;
-		testParameterRabbit 		= 0.00;
-		testParameterHunter 		= 0.00; 
-		testParameterJackelope		= 0.00; 
+		testParameterFox = 0.02;
+		testParameterRabbit = 0.00;
+		testParameterHunter = 0.00; 
+		testParameterJackelope	= 0.00; 
 		}
 		//populate with the current values.
 		@Test 
 		public void populate(Field field, List<Actor> actors)
 		   {
 		       Random rand = Randomizer.getRandom();
-		       for(int row = 0; row < field.getDepth(); row++) 
-		       {
-		           for(int col = 0; col < field.getWidth(); col++)
-		           {
-		               if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) 
-		               {
+		       for(int row = 0; row < field.getDepth(); row++) {
+		           for(int col = 0; col < field.getWidth(); col++) {
+		               if(rand.nextDouble() <= FOX_CREATION_PROBABILITY) {
 		                   Location location = new Location(row, col);
 		                   Animal fox = new Fox(true, field, location);
 		                   actors.add(fox);
 		               }
-		               else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY)
-		               {
+		               else if(rand.nextDouble() <= RABBIT_CREATION_PROBABILITY) {
 		                   Location location = new Location(row, col);
 		                   Animal rabbit = new Rabbit(true, field, location);
 		                   actors.add(rabbit);
 		               }
-		               else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) 
-		               {
+		               else if(rand.nextDouble() <= HUNTER_CREATION_PROBABILITY) {
 		                   Location location = new Location(row, col);
 		                   Hunter hunter = new Hunter(field, location);
 		                   actors.add(hunter);
 		               }
-		               else if(rand.nextDouble() <= JACKELOPE_CREATION_PROBABILITY) 
-		               {
+		               else if(rand.nextDouble() <= JACKELOPE_CREATION_PROBABILITY) {
 		               	Location location = new Location(row, col);
 		               	Jackelope jackelope = new Jackelope(true, field, location);
 		               	actors.add(jackelope);
@@ -89,24 +68,20 @@ public class SimulatorTest {
 		           }
 		       }
 		   }
-		//getters and setters for the actors creation probibilities
-		public double getFOX_CREATION_PROBABILITY() 
-		{
+		public double getFOX_CREATION_PROBABILITY() {
 		return FOX_CREATION_PROBABILITY;
 		}
 
-		public void setFOX_CREATION_PROBABILITY(double fOX_CREATION_PROBABILITY) 
-		{
+		public void setFOX_CREATION_PROBABILITY(double fOX_CREATION_PROBABILITY) {
 		FOX_CREATION_PROBABILITY = fOX_CREATION_PROBABILITY;
 		}
 
-		public double getRABBIT_CREATION_PROBABILITY()
-		{
+		public double getRABBIT_CREATION_PROBABILITY() {
 		return RABBIT_CREATION_PROBABILITY;
 		}
 
-		public void setRABBIT_CREATION_PROBABILITY(double rABBIT_CREATION_PROBABILITY)
-		{
+		public void setRABBIT_CREATION_PROBABILITY(
+		double rABBIT_CREATION_PROBABILITY) {
 		RABBIT_CREATION_PROBABILITY = rABBIT_CREATION_PROBABILITY;
 		}
 

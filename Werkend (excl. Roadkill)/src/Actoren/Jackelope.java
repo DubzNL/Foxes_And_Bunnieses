@@ -1,47 +1,40 @@
-package Actoren;
+package src.Actoren;
+
+import src.Model.*;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import Model.*;
 
 /**
  * A simple model of a rabbit.
- * Rabbits age, move, breed, and die.
+ * Jackelopes age, move, breed, and die.
  * 
  * @author Eric Gunnink
- * @version 2-2-2015
+ * @version 30-1-2015
  */
-public class Rabbit extends Animal
+public class Jackelope extends Animal
 {
-    // Characteristics shared by all rabbits (class variables).
+    // Characteristics shared by all jackelopes (class variables).
 
-    // The age at which a rabbit can start to breed.
+    // The age at which a jackelope can start to breed.
     private static final int BREEDING_AGE = 5;
-    // The age to which a rabbit can live.
+    // The age to which a jackelope can live.
     private static final int MAX_AGE = 40;
     // The likelihood of a rabbit breeding.
     private static final double BREEDING_PROBABILITY = 0.07;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // The food value of grass. In effect, this is the
-    // number of steps a rabbit can go before it has to eat again.
+    // number of steps a jackelope can go before it has to eat again.
     private static final int GRASS_FOOD_VALUE = 10;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    //the rabbits age
-    private int age; 
     
     // Individual characteristics (instance fields).
-    // The rabbit's food level, which is increased by eating grass.
+    // The jackelope's food level, which is increased by eating grass.
     private int foodLevel;
-    // A boolean whether or not the rabbit is vulnarable for the disease
-    private boolean isVulnerable;
-    // A boolean whether or not the rabbit is sick
-    private boolean isSick;
-    // The likelihood a rabbit gets the diseasegen
-    private static double DISEASE_PROBABILITY = 0.75;
     
 
     /**
@@ -52,33 +45,28 @@ public class Rabbit extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Rabbit(boolean randomAge, Field field, Location location)
+    public Jackelope(boolean randomAge, Field field, Location location)
     {
-        super(randomAge, field, location);
-        if(randomAge) {
-            foodLevel = rand.nextInt(GRASS_FOOD_VALUE);
-        }
-        else {
-            foodLevel = GRASS_FOOD_VALUE;
-        }
-        if (rand.nextDouble() <= DISEASE_PROBABILITY) {
-        	isVulnerable = true;
-        } else {
-        	isVulnerable = false;
-        }
+    	super(randomAge, field, location);
+    	if(randomAge) {
+    		foodLevel = rand.nextInt(GRASS_FOOD_VALUE);
+    	}
+    	else {
+    		foodLevel = GRASS_FOOD_VALUE;
+    	}
     }
     
     /**
-     * This is what the rabbit does most of the time - it runs 
+     * This is what the jackelope does most of the time - it runs 
      * around. Sometimes it will breed or die of old age.
-     * @param newRabbits A list to return newly born rabbits.
+     * @param newJAckelopes A list to return newly born jackelopes.
      */
-    public void act(List<Actor> newRabbits)
+    public void act(List<Actor> newJackelopes)
     {
         incrementAge();
         incrementHunger();
         if(isAlive()) {
-            giveBirth(newRabbits);           
+            giveBirth(newJackelopes);           
             // Move towards a source of food if found.
             Location newLocation = findFood();
             if(newLocation == null) { 
@@ -97,7 +85,7 @@ public class Rabbit extends Animal
     }
     
     /**
-     * Make this rabbit more hungry. This could result in the rabbit's death.
+     * Make this jackelope more hungry. This could result in the jackelope's death.
      */
     private void incrementHunger()
     {
@@ -108,7 +96,7 @@ public class Rabbit extends Animal
     }
 
     /**
-     * Return the maximum age for a rabbit.
+     * Return the maximum age for a jackelope.
      * @return The animal's maximum age.
      */
     public int getMaxAge()
@@ -117,7 +105,7 @@ public class Rabbit extends Animal
     }
         
     /**
-     * Return the breeding age for a rabbit.
+     * Return the breeding age for a jackelope.
      * @return The rabbit's breeding age.
      */
     public int getBreedingAge()
@@ -126,8 +114,8 @@ public class Rabbit extends Animal
     }
 
     /**
-     * Return the breeding probability for a rabbit.
-     * @return The rabbit's probability age.
+     * Return the breeding probability for a jackelope.
+     * @return The jackelope's probability age.
      */
     public double getBreedingProbability()
     {
@@ -135,8 +123,8 @@ public class Rabbit extends Animal
     }
 
     /**
-     * Return the maximum litter size for a rabbit.
-     * @return The rabbit's maximum litter size.
+     * Return the maximum litter size for a jackelope.
+     * @return The jackelope's maximum litter size.
      */
     public int getMaxLitterSize()
     {
@@ -144,16 +132,16 @@ public class Rabbit extends Animal
     }
         
     /**
-     * Create a new rabbit. A rabbit may be created with age
+     * Create a new jackelope. A jackelope may be created with age
      * zero (a new born) or with a random age.
      * 
-     * @param randomAge If true, the rabbit will have a random age.
+     * @param randomAge If true, the jackelope will have a random age.
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
     protected Animal createAnimal(boolean randomAge, Field field, Location location)
     {
-        return new Rabbit(randomAge, field, location);
+        return new Jackelope(randomAge, field, location);
     }
     
     /**
@@ -180,51 +168,5 @@ public class Rabbit extends Animal
     	}
     	return null;
     }
-    
-    /**
-     * Boolean to make a rabbit sick
-     */
-    protected void setSick()
-    {
-    	isSick = true;
-    }
-    
-    /**
-     * Get the boolean to check whether a rabbit is vulnerable or not
-     */
-    public boolean getVulnerable()
-    {
-    	return isVulnerable;
-    }
-    
-    /**
-     * A sick rabbit can infect other rabbits. every step, a sick rabbit
-     * can only infect one vulnerable rabbit.
-     */
-    private boolean findHealty()
-    {
-    	Field field = getField();
-    	List<Location> adjacent = field.adjacentLocations(getLocation());
-    	Iterator<Location> it = adjacent.iterator();
-    	while(it.hasNext()) {
-    		Location where = it.next();
-    		Object animal = field.getObjectAt(where);
-    		if(animal instanceof Rabbit) {
-    			Rabbit rabbit = (Rabbit) animal;
-    			if(rabbit.getVulnerable() == true) {
-    				return true;
-    			}
-    		}
-    	}
-    	return false;
-    }
-    
-    /**
-     * Getter Age of Rabbit
-     * @return age
-     */
-    public int getAgeRabbit(){
-    	return age;
-    }
-
+            
 }

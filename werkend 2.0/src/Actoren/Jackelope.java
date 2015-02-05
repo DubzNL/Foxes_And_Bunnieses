@@ -8,7 +8,7 @@ import java.util.Random;
 
 
 /**
- * A simple model of a rabbit.
+ * A simple model of a Jackelope.
  * Jackelopes age, move, breed, and die.
  * 
  * @author Eric Gunnink
@@ -31,6 +31,9 @@ public class Jackelope extends Animal
     private static final int GRASS_FOOD_VALUE = 10;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
+    // the age of the Jackelope
+    private int age;
+    
     
     // Individual characteristics (instance fields).
     // The jackelope's food level, which is increased by eating grass.
@@ -168,5 +171,13 @@ public class Jackelope extends Animal
     	}
     	return null;
     }
-            
+    /**
+     * Getter Age of Jackelope
+     * @return age
+     */
+    public int getAgeJackelope(){
+    	return age;
+    }
+    
+    
 }

@@ -1,10 +1,10 @@
-package Actoren;
+package src.Actoren;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import Model.*;
+import src.Model.*;
 
 /**
  * A simple model of a rabbit.
@@ -30,8 +30,6 @@ public class Rabbit extends Animal
     private static final int GRASS_FOOD_VALUE = 10;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
-    //the rabbits age
-    private int age; 
     
     // Individual characteristics (instance fields).
     // The rabbit's food level, which is increased by eating grass.
@@ -42,6 +40,10 @@ public class Rabbit extends Animal
     private boolean isSick;
     // The likelihood a rabbit gets the diseasegen
     private static double DISEASE_PROBABILITY = 0.75;
+    // The amount of steps a rabbit can take while sick
+    private static int sickSteps = 5;
+    // The amount of steps a sick rabbit has taken
+    private static int sickStepsTaken;
     
 
     /**
@@ -217,14 +219,6 @@ public class Rabbit extends Animal
     		}
     	}
     	return false;
-    }
-    
-    /**
-     * Getter Age of Rabbit
-     * @return age
-     */
-    public int getAgeRabbit(){
-    	return age;
     }
 
 }
