@@ -125,7 +125,8 @@ public class Simulator
 
         view.showStatus(step, field);
     }
-        
+    	
+
     /**
      * Reset the simulation to a starting position.
      */

@@ -1,6 +1,7 @@
 package src.Model;
 import java.awt.Color;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * This class collects and provides some statistical data on the state 
@@ -16,6 +17,7 @@ public class FieldStats
     private HashMap<Class, Counter> counters;
     // Whether the counters are currently up to date.
     private boolean countsValid;
+    private ArrayList countArray;
 
     /**
      * Construct a FieldStats object.
@@ -26,6 +28,7 @@ public class FieldStats
         // we might find
         counters = new HashMap<Class, Counter>();
         countsValid = true;
+        countArray = new ArrayList();
     }
 
     /**
@@ -34,7 +37,8 @@ public class FieldStats
      */
     public String getPopulationDetails(Field field)
     {
-        StringBuffer buffer = new StringBuffer();
+        countArray.clear();
+    	StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
             generateCounts(field);
         }
@@ -42,10 +46,19 @@ public class FieldStats
             Counter info = counters.get(key);
             buffer.append(info.getName());
             buffer.append(": ");
-            buffer.append(info.getCount());
+            int count = info.getCount();
+            buffer.append(count);
+            countArray.add(count);
             buffer.append(' ');
         }
         return buffer.toString();
+    }
+    /**
+     *	methode om de array op te vragen met waardes  
+     */
+    public ArrayList getArray()
+    {
+    	return countArray;
     }
     
     /**

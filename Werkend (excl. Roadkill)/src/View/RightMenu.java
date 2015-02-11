@@ -32,7 +32,7 @@ public class RightMenu extends AbstractView{
 		ImageIcon icon = new ImageIcon(image);
 		label.setIcon(icon);
 		
-		//panel = new JPanel(new GridLayout(3,5));
+	
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.add(textLabel, BorderLayout.SOUTH);

@@ -46,6 +46,7 @@ public class Frame extends JFrame
     private PopulationView population;
     private JPanel panel;
     private RightMenu rightMenu;
+    private RightController rightController;
     
     /**
      * Create a view of the given width and height.
@@ -54,17 +55,20 @@ public class Frame extends JFrame
      */
     public Frame(int height, int width, Simulator simulator,Menu menu)
     {
-        stats = new FieldStats();
-        colors = new LinkedHashMap<Class, Color>();
-        rightMenu = new RightMenu();
-        setTitle("Fox and Rabbit Simulation");
-        stepLabel = new StepLabelView();
-        population = new PopulationView();
-        this.menu=menu;
-        theSimulator = simulator;
-        panel = new JPanel();
-        setLocation(100, 50);
-        fieldView = new FieldView(height, width);
+		stats = new FieldStats();
+		colors = new LinkedHashMap<Class, Color>();
+		rightMenu = new RightMenu();
+		fieldView = new FieldView(height, width);
+		rightController = new RightController(rightMenu, stats);
+		setTitle("Fox and Rabbit Simulation");
+		
+		stepLabel = new StepLabelView();
+		population = new PopulationView();
+		this.menu=menu;
+		theSimulator = simulator;
+		panel = new JPanel();
+		setLocation(100, 50);
+		
 
         Container contents = getContentPane();
         contents.add((stepLabel.getStepLabel()), BorderLayout.NORTH);
@@ -77,7 +81,6 @@ public class Frame extends JFrame
         
         pack();
         setVisible(true);
-
         
     }
     
@@ -137,6 +140,8 @@ public class Frame extends JFrame
         stats.countFinished();
 
         (population.getPopulation()).setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
+        System.out.println(stats.getPopulationDetails(field));
+
         fieldView.repaint();
     }
 
