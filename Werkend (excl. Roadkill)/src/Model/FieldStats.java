@@ -28,7 +28,8 @@ public class FieldStats
         // we might find
         counters = new HashMap<Class, Counter>();
         countsValid = true;
-        countArray = new ArrayList();
+        //countArray = new ArrayList();
+        countArray = new ArrayList<Integer>();
     }
 
     /**
@@ -37,19 +38,22 @@ public class FieldStats
      */
     public String getPopulationDetails(Field field)
     {
-        countArray.clear();
+        
     	StringBuffer buffer = new StringBuffer();
         if(!countsValid) {
             generateCounts(field);
         }
+        countArray.clear();
         for(Class key : counters.keySet()) {
+        	
             Counter info = counters.get(key);
             buffer.append(info.getName());
             buffer.append(": ");
             int count = info.getCount();
             buffer.append(count);
-            countArray.add(count);
+            countArray.add(info.getCount());
             buffer.append(' ');
+            
         }
         return buffer.toString();
     }
@@ -58,7 +62,7 @@ public class FieldStats
      */
     public ArrayList getArray()
     {
-    	return countArray;
+    	return countArray;	
     }
     
     /**

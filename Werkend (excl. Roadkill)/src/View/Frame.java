@@ -55,21 +55,19 @@ public class Frame extends JFrame
      */
     public Frame(int height, int width, Simulator simulator,Menu menu)
     {
+    	setTitle("Fox and Rabbit Simulation");
 		stats = new FieldStats();
 		colors = new LinkedHashMap<Class, Color>();
-		rightMenu = new RightMenu();
 		fieldView = new FieldView(height, width);
-		rightController = new RightController(rightMenu, stats);
-		setTitle("Fox and Rabbit Simulation");
-		
 		stepLabel = new StepLabelView();
 		population = new PopulationView();
+		rightMenu = new RightMenu();
+		rightController = new RightController(rightMenu, stats);
 		this.menu=menu;
 		theSimulator = simulator;
 		panel = new JPanel();
 		setLocation(100, 50);
 		
-
         Container contents = getContentPane();
         contents.add((stepLabel.getStepLabel()), BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
@@ -140,7 +138,8 @@ public class Frame extends JFrame
         stats.countFinished();
 
         (population.getPopulation()).setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
-        System.out.println(stats.getPopulationDetails(field));
+        //System.out.println(stats.getPopulationDetails(field));
+        rightController.readArray();
 
         fieldView.repaint();
     }

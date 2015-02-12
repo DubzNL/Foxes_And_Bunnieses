@@ -16,7 +16,7 @@ import java.awt.Image;
 public class RightMenu extends AbstractView{
 	private  JPanel panel;
 	private Image image;
-	private JLabel label;
+	//private JLabel label;
 	private JLabel textLabel;
 	private JPanel textPanel;
 	
@@ -24,23 +24,12 @@ public class RightMenu extends AbstractView{
 	public RightMenu(){
 		
 		textPanel = new JPanel();
-		
 		addTextPanel();
 		textLabel = new JLabel("Meest voorkomende actor:");
-		label = new JLabel();
-		image = new ImageIcon(this.getClass().getResource("/src/images/fox_icon.jpg")).getImage();
-		ImageIcon icon = new ImageIcon(image);
-		label.setIcon(icon);
-		
-	
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		panel.add(textLabel, BorderLayout.SOUTH);
-		
-		
-		panel.add(label);
 		panel.add(textPanel, BorderLayout.SOUTH);
-		
+		panel.add(textLabel, BorderLayout.SOUTH);
 	}
 	
 	public JPanel getRightMenu(){
