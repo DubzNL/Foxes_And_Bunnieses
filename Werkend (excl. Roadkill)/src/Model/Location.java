@@ -1,4 +1,4 @@
-package src.Model;
+package Model;
 /**
  * Represent a location in a rectangular grid.
  * 
@@ -8,8 +8,8 @@ package src.Model;
 public class Location
 {
     // Row and column positions.
-    private int row;
-    private int col;
+    public int row;
+    public int col;
 
     /**
      * Represent a row and column.

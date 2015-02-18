@@ -1,10 +1,11 @@
-package src.Model;
+package Model;
 
 import java.awt.Color;
 import java.util.List;
 import java.util.Random;
-import src.Actoren.*;
-import src.View.*;
+
+import Actoren.*;
+import View.*;
 
 /**
  * A class to generate the foxes and rabbits populations of the simulation.
@@ -24,7 +25,8 @@ public class PopulationGenerator
     private static final double JACKELOPE_CREATION_PROBABILITY = 0.05;
     // The probability that grass wil be created in any given grid position.
     private static final double GRASS_CREATION_PROBABILITY = 0.5;
-
+    // The probability that Car will be created in any given grid position.
+    private static final double CAR_CREATION_PROBABILITY = 0.01; 
     /**
      * Constructor for objects of class PopulationGenerator
      * @param view The visualization.
@@ -38,6 +40,7 @@ public class PopulationGenerator
         view.setColor(Hunter.class, Color.red);
         view.setColor(Jackelope.class, Color.magenta);
         view.setColor(Grass.class, Color.green);
+        view.setColor(Roadkill.class,  Color.black);
     }
 
     /**
@@ -75,6 +78,12 @@ public class PopulationGenerator
                 	Grass grass = new Grass(true, field, location);
                 	actors.add(grass);
                 }
+                else if(rand.nextDouble() <= CAR_CREATION_PROBABILITY) {
+                	Location location = new Location(row, col);
+                	Car car = new Car(true, field, location);
+                	actors.add(car);
+                }
+                
                 // else leave the location empty.
             }
         }
