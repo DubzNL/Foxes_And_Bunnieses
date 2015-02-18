@@ -1,21 +1,13 @@
- package src.View;
-import java.awt.*;
-import java.awt.event.*;
+package src.View;
+import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 import src.Model.*;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.awt.event.ActionListener;
-import java.awt.Color;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.util.ArrayList;
-public class RightController{
-	
+public class BiggestActorView{
+
 	private RightMenu rightMenu;
 	private FieldStats stats;
 	private JLabel label;
@@ -29,17 +21,17 @@ public class RightController{
 	private ImageIcon grassIcon;
 	private Image jackalopeImage;
 	private ImageIcon jackalopeIcon;
-	private ArrayList animalCountArray;
 	private JPanel textPanel;
 	private Pieview pieView;
-		
+	private ArrayList animalCountArray;
+	private JLabel textLabel;
 	
-	public RightController(RightMenu rightMenu, FieldStats stats)
+	public BiggestActorView(FieldStats stats)
 	{
-		animalCountArray=new ArrayList<Integer>();
+		this.stats=stats;
 		label = new JLabel();
-		this.stats = stats;
-		this.rightMenu = rightMenu;
+		
+		animalCountArray=new ArrayList<Integer>();
 		foxImage = new ImageIcon(this.getClass().getResource("/src/images/fox_icon.jpg")).getImage();
 		foxIcon = new ImageIcon(foxImage);
 		rabbitImage = new ImageIcon(this.getClass().getResource("/src/images/rabbit_icon.png")).getImage();
@@ -50,12 +42,11 @@ public class RightController{
 		grassIcon = new ImageIcon(grassImage);
 		jackalopeImage = new ImageIcon(this.getClass().getResource("/src/images/jackalope_icon.png")).getImage();
 		jackalopeIcon = new ImageIcon(jackalopeImage);
-		
+	
 		textPanel = new JPanel();
-		JLabel textLabel = new JLabel("Meest voorkomende actor:");
-		(rightMenu.getRightMenu()).add(textLabel);
-		pieView = new Pieview();
-		
+		textLabel = new JLabel("Meest voorkomende actor:");
+				
+
 	}
 	
 	public void readArray()
@@ -65,7 +56,7 @@ public class RightController{
 
 		if ((Integer)animalCountArray.get(0) > maxPopulation){
 			maxPopulation =(Integer)animalCountArray.get(0);
-			label.setIcon(jackalopeIcon);
+			label.setIcon(grassIcon);
 		}
 		if ((Integer)animalCountArray.get(1) > maxPopulation){
 			maxPopulation =(Integer)animalCountArray.get(1);
@@ -73,31 +64,27 @@ public class RightController{
 		}
 		if ((Integer)animalCountArray.get(2) > maxPopulation){
 			maxPopulation =(Integer)animalCountArray.get(2);
-			label.setIcon(grassIcon);
+			label.setIcon(jackalopeIcon);
 		}
 		if ((Integer)animalCountArray.get(3) > maxPopulation){
 			maxPopulation =(Integer)animalCountArray.get(3);
-			label.setIcon(hunterIcon);
+			label.setIcon(rabbitIcon);
 		}
 		if ((Integer)animalCountArray.get(4) > maxPopulation){
 			maxPopulation =(Integer)animalCountArray.get(4);
-			label.setIcon(rabbitIcon);
+			label.setIcon(hunterIcon);
 		}
 		
-		setImage();
 		label.repaint();
 	}
-
-	public void setImage()
+	public JLabel getLabel()
 	{
-		(rightMenu.getRightMenu()).add(label);	
+		return label;
 	}
 	
-	public void getPieView()
-	{	
-		(rightMenu.getRightMenu()).add(pieView.getPanel());
-		(pieView.getPanel()).setVisible(true);
-		pieView.updateView();
+	public JLabel getTextLabel()
+	{
+		return textLabel;
 	}
 	
-} 
+}

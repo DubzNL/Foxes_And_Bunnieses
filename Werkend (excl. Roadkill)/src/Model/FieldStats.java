@@ -18,6 +18,7 @@ public class FieldStats
     // Whether the counters are currently up to date.
     private boolean countsValid;
     private ArrayList countArray;
+    private ArrayList actorArray;
 
     /**
      * Construct a FieldStats object.
@@ -30,6 +31,7 @@ public class FieldStats
         countsValid = true;
         //countArray = new ArrayList();
         countArray = new ArrayList<Integer>();
+        actorArray = new ArrayList<String>();
     }
 
     /**
@@ -47,7 +49,9 @@ public class FieldStats
         for(Class key : counters.keySet()) {
         	
             Counter info = counters.get(key);
-            buffer.append(info.getName());
+            String actorNames = info.getName();
+            actorArray.add(actorNames);
+            buffer.append(actorNames);
             buffer.append(": ");
             int count = info.getCount();
             buffer.append(count);
@@ -63,6 +67,13 @@ public class FieldStats
     public ArrayList getArray()
     {
     	return countArray;	
+    }
+    /**
+     *	methode om de array op te vragen met actoren  
+     */
+    public ArrayList getActorArray()
+    {
+    	return actorArray;	
     }
     
     /**

@@ -8,6 +8,7 @@ import javax.swing.*;
 
 import src.Model.*;
 import src.Actoren.*;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionListener;
@@ -35,7 +36,6 @@ public class Frame extends JFrame
     //private JLabel population;
     //private JPanel linkerMenu;
     private FieldView fieldView;
- 
     // A map for storing colors for participants in the simulation
     private Map<Class, Color> colors;
     // A statistics object computing and storing simulation information
@@ -46,35 +46,45 @@ public class Frame extends JFrame
     private PopulationView population;
     private JPanel panel;
     private RightMenu rightMenu;
-    private RightController rightController;
+    private JPanel eastPanel;
+    private BiggestActorView actorView;
     
     /**
      * Create a view of the given width and height.
      * @param height The simulation's height.
      * @param width  The simulation's width.
      */
-    public Frame(int height, int width, Simulator simulator,Menu menu)
+    public Frame(FieldView fieldView, Simulator simulator,Menu menu,BiggestActorView actorView, FieldStats stats, RightMenu rightMenu)
     {
     	setTitle("Fox and Rabbit Simulation");
-		stats = new FieldStats();
+    	
+		this.stats=stats;
+		this.rightMenu=rightMenu;
 		colors = new LinkedHashMap<Class, Color>();
-		fieldView = new FieldView(height, width);
+		this.fieldView = fieldView;
 		stepLabel = new StepLabelView();
 		population = new PopulationView();
-		rightMenu = new RightMenu();
-		rightController = new RightController(rightMenu, stats);
+		//rightMenu = new RightMenu(rightController);  
+		//rightController = new RightController(rightMenu, stats);
+		this.actorView=actorView;
+		//actorView.readArray();
 		this.menu=menu;
 		theSimulator = simulator;
 		panel = new JPanel();
 		setLocation(100, 50);
 		
+		eastPanel = new JPanel();
+		eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.PAGE_AXIS));
+		JLabel textLabel = new JLabel("Meest voorkomende actor:");
+		eastPanel.add(textLabel);
+		eastPanel.add(actorView.getLabel());
         Container contents = getContentPane();
         contents.add((stepLabel.getStepLabel()), BorderLayout.NORTH);
         contents.add(fieldView, BorderLayout.CENTER);
         contents.add((population.getPopulation()), BorderLayout.SOUTH);
         contents.add((menu.getMenu()), BorderLayout.WEST);
-        contents.add((rightMenu.getRightMenu()), BorderLayout.EAST);
-        //contents.add(panel, BorderLayout.EAST);
+        contents.add(eastPanel, BorderLayout.EAST);
+
         Dimension d = new Dimension(150,60);
         
         pack();
@@ -139,7 +149,7 @@ public class Frame extends JFrame
 
         (population.getPopulation()).setText(POPULATION_PREFIX + stats.getPopulationDetails(field));
         //System.out.println(stats.getPopulationDetails(field));
-        rightController.readArray();
+        actorView.readArray();
 
         fieldView.repaint();
     }
@@ -152,6 +162,7 @@ public class Frame extends JFrame
     {
         return stats.isViable(field);
     }
+   
     
     /**
      * Provide a graphical view of a rectangular field. This is 
@@ -160,7 +171,7 @@ public class Frame extends JFrame
      * component displays the field.
      * This is rather advanced GUI stuff - you can ignore this 
      * for your project if you like.
-     */
+     
     private class FieldView extends JPanel
     {
         private final int GRID_VIEW_SCALING_FACTOR = 6;
@@ -173,7 +184,7 @@ public class Frame extends JFrame
 
         /**
          * Create a new FieldView component.
-         */
+         
         public FieldView(int height, int width)
         {
             gridHeight = height;
@@ -183,7 +194,7 @@ public class Frame extends JFrame
 
         /**
          * Tell the GUI manager how big we would like to be.
-         */
+         
         public Dimension getPreferredSize()
         {
             return new Dimension(gridWidth * GRID_VIEW_SCALING_FACTOR,
@@ -193,7 +204,7 @@ public class Frame extends JFrame
         /**
          * Prepare for a new round of painting. Since the component
          * may be resized, compute the scaling factor again.
-         */
+         
         public void preparePaint()
         {
             if(! size.equals(getSize())) {  // if the size has changed...
@@ -214,7 +225,7 @@ public class Frame extends JFrame
         
         /**
          * Paint on grid location on this field in a given color.
-         */
+         
         public void drawMark(int x, int y, Color color)
         {
             g.setColor(color);
@@ -224,7 +235,7 @@ public class Frame extends JFrame
         /**
          * The field view component needs to be redisplayed. Copy the
          * internal image to screen.
-         */
+         
         public void paintComponent(Graphics g)
         {
             if(fieldImage != null) {
@@ -239,5 +250,5 @@ public class Frame extends JFrame
             }
         }
         
-    }
+    } **/
 }

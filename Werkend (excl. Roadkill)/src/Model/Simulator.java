@@ -23,7 +23,7 @@ public class Simulator
     private static final int DEFAULT_WIDTH = 120;
     // The default depth of the grid.
     private static final int DEFAULT_DEPTH = 80;
-
+    private FieldStats stats;
     // List of animals in the field.
     private List<Actor> animals;
     // The current state of the field.
@@ -36,6 +36,10 @@ public class Simulator
     private PopulationGenerator populator;
     private Random rand = new Random();
     private Controller controller;
+    private RightMenu rightMenu;
+    //private RightController rightController;
+    private BiggestActorView biggestActorView;
+    private FieldView fieldView;
     
     /**
      * Construct a simulation field with default size.
@@ -60,13 +64,18 @@ public class Simulator
             width = DEFAULT_WIDTH;
         }
         
+        stats = new FieldStats();
+        rightMenu = new RightMenu();  //rightController
+        //rightController = new RightController(rightMenu, stats);
+        biggestActorView = new BiggestActorView(stats);
         animals = new ArrayList<Actor>();
         field = new Field(depth, width);
         Simulator simulator = this;
         // Create a view of the state of each location in the field.
         Menu menu = new Menu();
         controller = new Controller((menu.getMenu()),simulator);
-        view = new Frame(depth, width, simulator,menu);
+        fieldView = new FieldView(depth, width);
+        view = new Frame(fieldView, simulator, menu, biggestActorView, stats, rightMenu);
         populator = new PopulationGenerator(view);
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
@@ -98,6 +107,7 @@ public class Simulator
     {
         for(int step = 1; step <= numSteps && view.isViable(field); step++) {
             simulateOneStep();
+            fieldView.repaint();
         }
     }
     

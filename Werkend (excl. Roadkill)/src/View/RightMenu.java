@@ -21,33 +21,18 @@ public class RightMenu extends AbstractView{
 	private JPanel textPanel;
 	
 	
-	public RightMenu(){
+	public RightMenu(){  //RightController rightController
 		
+		JTextField numberField = new JTextField(10);
 		textPanel = new JPanel();
-		addTextPanel();
-		textLabel = new JLabel("Meest voorkomende actor:");
+		//addTextPanel();
 		panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		panel.add(textPanel, BorderLayout.SOUTH);
-		panel.add(textLabel, BorderLayout.SOUTH);
+
 	}
 	
 	public JPanel getRightMenu(){
 		return panel;
-		
 	}
-	
-	private void addTextPanel(){
-		
-	textPanel.add("test", new JButton("Button 1"));
-	JTextField numberField = new JTextField(10);
-	textPanel.add(numberField);
-	textPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
-	
-	}
-	
-	public void calculateActor(){
-		
-		
-	}
+
 }
