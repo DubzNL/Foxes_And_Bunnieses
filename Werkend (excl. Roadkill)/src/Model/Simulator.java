@@ -1,7 +1,7 @@
-package src.Model;
+package Model;
 
-import src.Actoren.*;
-import src.View.*;
+import Actoren.*;
+import View.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -35,11 +35,14 @@ public class Simulator
     // An object to generate populations of foxes and rabbits.
     private PopulationGenerator populator;
     private Random rand = new Random();
+<<<<<<< HEAD
     private Controller controller;
     private RightMenu rightMenu;
     //private RightController rightController;
     private BiggestActorView biggestActorView;
     private FieldView fieldView;
+=======
+>>>>>>> 4c54e1f7ee2ea0f7a8b407e5f04ca790b022b3b5
     
     /**
      * Construct a simulation field with default size.
@@ -47,7 +50,6 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        
     }
     
     /**
@@ -72,10 +74,14 @@ public class Simulator
         field = new Field(depth, width);
         Simulator simulator = this;
         // Create a view of the state of each location in the field.
+<<<<<<< HEAD
         Menu menu = new Menu();
         controller = new Controller((menu.getMenu()),simulator);
         fieldView = new FieldView(depth, width);
         view = new Frame(fieldView, simulator, menu, biggestActorView, stats, rightMenu);
+=======
+        view = new Frame(depth, width, simulator);
+>>>>>>> 4c54e1f7ee2ea0f7a8b407e5f04ca790b022b3b5
         populator = new PopulationGenerator(view);
         view.setColor(Rabbit.class, Color.orange);
         view.setColor(Fox.class, Color.blue);
@@ -135,8 +141,7 @@ public class Simulator
 
         view.showStatus(step, field);
     }
-    	
-
+        
     /**
      * Reset the simulation to a starting position.
      */
@@ -170,10 +175,11 @@ public class Simulator
     }
     
     /**
-     * When called, the application will stop
+     * Get the number of the step that you're currently on
+     * @return step the step that you're on right now
      */
-    public void quit()
+    public int getStep()
     {
-    	System.exit(0);
+    	return step;
     }
 }

@@ -18,7 +18,9 @@ public class Field
     private static final Random rand = Randomizer.getRandom();
     
     // The depth and width of the field.
-    private int depth, width;
+    public int depth;
+
+	public int width;
     // Storage for the animals.
     private Object[][] field;
 
